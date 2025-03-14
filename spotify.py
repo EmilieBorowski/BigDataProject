@@ -4,13 +4,21 @@ import pycountry
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import kagglehub
+
+# Download latest version
+median_age_csv_path = kagglehub.dataset_download("divyansh22/average-age-of-countries")
+print("Path to median_age_csv files:", median_age_csv_path)
+top_songs_csv_path = kagglehub.dataset_download("asaniczka/top-spotify-songs-in-73-countries-daily-updated")
+print("Path to top_songs_csv files:", top_songs_csv_path)
+
 # Start timing the entire process
 start_time = time.time()
 
 # Step 1: Load datasets
 load_start = time.time()
-spotify_df = pd.read_csv("universal_top_spotify_songs.csv")
-age_df = pd.read_csv("MedianAge.csv")
+spotify_df = pd.read_csv(top_songs_csv_path+"\\universal_top_spotify_songs.csv")
+age_df = pd.read_csv(median_age_csv_path+"\\MedianAge.csv")
 load_end = time.time()
 print(f"Time to load datasets: {load_end - load_start:.2f} seconds")
 
